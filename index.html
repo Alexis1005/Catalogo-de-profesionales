@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plataforma de Profesionales</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Open+Sans:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <h1 class="header__title">Catálogo de Profesionales</h1>
+            <div class="search-bar">
+                <input type="text" id="global-search" placeholder="Buscar profesional por nombre...">
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="areas-filter" id="areas-filter">
+            <button class="filter-button active" data-area-id="all">Ver todos</button>
+            <!-- Las áreas se cargarán aquí -->
+        </section>
+
+        <section class="professionals-list" id="professionals-list">
+            <!-- Los profesionales se cargarán aquí -->
+        </section>
+
+        <section class="empty-state" id="empty-state" style="display: none;">
+            <p>No hay profesionales disponibles en esta categoría o con este criterio de búsqueda.</p>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container foot">
+            <a href="https://alexis-vespa-portafolio.vercel.app/" target="_blank"><img src="assets/logo_portfolio.png" alt="Desarrollador de la página" title="Desarrollador de la página" class="imgPortafolio"></a>
+            <p>&copy; 2026 Plataforma de Gestión de Profesionales. Todos los derechos reservados.</p>
+            <p class="footer__note"><a href="admin.html">...</a></p>
+        </div>
+    </footer>
+
+    <script type="module" src="js/storage.js"></script>
+    <script type="module" src="js/app_new.js"></script>
+</body>
+</html>
