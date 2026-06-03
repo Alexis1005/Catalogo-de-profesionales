@@ -1,115 +1,245 @@
-# 🏢 Plataforma de Gestión de Profesionales
+# 🏢 Catálogo de Profesionales
 
-Una plataforma web moderna, intuitiva y completamente funcional para gestionar profesionales organizados por categorías. Construida con **HTML5, CSS3 y JavaScript vanilla** sin dependencias externas.
+Plataforma web moderna para gestionar y consultar profesionales organizados por áreas de especialidad. Construida con **Vite, Firebase Firestore y Cloudinary** para una experiencia segura y escalable.
 
 ## ✨ Características
 
 ### 🌐 Vista Pública
-- **Búsqueda global** en tiempo real por nombre de profesional
-- **Filtrado por categoría** (Áreas/Especialidades)
-- **Cards responsivas** con información profesional
-- **Contacto directo** vía email y WhatsApp
-- **Diseño limpio y profesional** con paleta marrón cálida
+- **Búsqueda en tiempo real**
+- **Filtrado por área** (Electricistas, Plomeros, Gasistas, etc.)
+- **Tarjetas responsivas** con información profesional
+- **Contacto directo** vía WhatsApp
+- **Fotos de profesionales** con iniciales como fallback
+- **Diseño profesional** con paleta marrón cálida
+- **Filtrado de activos/inactivos** (solo muestra activos)
 
 ### 🔐 Panel de Administración
-- **Autenticación con contraseña** (hardcoded: `admin1234`)
-- **Gestión completa de áreas**: Crear, editar, eliminar
-- **Gestión completa de profesionales**: CRUD completo
+- **Autenticación con contraseña** (variable de entorno)
+- **Gestión de áreas**: Crear, editar, eliminar
+- **Gestión de profesionales**: CRUD completo
+- **Carga de imágenes** directa desde el panel (Cloudinary)
+- **Estado activo/inactivo** con badge visual
 - **Validaciones inteligentes** con feedback visual
-- **Notificaciones Toast** para cada acción
-- **Interfaz intuitiva** con sidebar y tabs
+- **Notificaciones Toast** en cada acción
+- **Vista previa de imágenes** antes de guardar
+
+## 🏗️ Stack Tecnológico
+
+### Frontend
+- **Vite** - Empaquetador y servidor de desarrollo
+- **HTML5 + CSS3 + JavaScript vanilla** - Sin frameworks
+- **Variables de entorno** - Configuración segura
+
+### Backend & Servicios
+- **Firebase Firestore** - Base de datos NoSQL
+- **Cloudinary** - Hosting y optimización de imágenes
+- **Firebase Storage** - Almacenamiento (configuración CORS)
 
 ## 🎨 Paleta de Colores
 
-Paleta profesional de **tonos marrón cálido**:
+Tema **"Topo y Arena"** - tonos marrón cálido:
 
 ```css
---color-primary: #8B6F47        /* Marrón principal */
---color-secondary: #A0826D      /* Marrón secundario */
---color-accent: #D4A574         /* Marrón acento */
---color-text: #3E3E3E           /* Texto oscuro */
+--color-primary: #5A5047        /* Marrón principal */
+--color-secondary: #8B7355      /* Marrón secundario */
+--color-accent: #D4A574         /* Arena acento */
+--color-text: #3A3330           /* Texto oscuro */
 --color-bg: #F5F1ED             /* Fondo claro */
---color-card-bg: #FFFFFF        /* Cards blanco */
 ```
 
-## 🚀 Cómo Empezar
+## 🚀 Instalación & Configuración
 
 ### Requisitos
-- Un navegador moderno (Chrome, Firefox, Safari, Edge)
-- No necesita servidor local (funciona con `file://`)
+- Node.js 20.19+ o 22.12+
+- npm 10+
+- Credenciales de Firebase
+- Cuenta Cloudinary (gratuita)
 
 ### Pasos
 
-1. **Descarga o clona el proyecto**
-   ```
-   /proyecto
-   ├── index.html           (Vista pública)
-   ├── admin.html           (Panel admin)
-   ├── css/
-   │   ├── styles.css       (Estilos públicos)
-   │   └── admin.css        (Estilos admin)
-   ├── js/
-   │   ├── storage.js       (Persistencia)
-   │   ├── auth.js          (Autenticación)
-   │   ├── app.js           (Lógica pública)
-   │   └── admin.js         (Lógica admin)
-   └── CAMBIOS.md           (Historial de cambios)
+1. **Clona o descarga el proyecto**
+   ```bash
+   git clone https://github.com/tu-usuario/Catalogo-de-profesionales.git
+   cd Catalogo-de-profesionales
    ```
 
-2. **Abre en tu navegador**
-   - Vista pública: Abre `index.html` directamente
-   - Panel admin: Haz clic en "Panel de Administración" o abre `admin.html`
+2. **Instala dependencias**
+   ```bash
+   npm install
+   ```
 
-3. **Prueba el login**
-   - Contraseña: `admin1234`
+3. **Configura variables de entorno**
+   ```bash
+   cp .env.example .env
+   ```
+
+   Edita `.env` con tus credenciales:
+   ```dotenv
+   VITE_FIREBASE_API_KEY=tu_api_key
+   VITE_FIREBASE_AUTH_DOMAIN=tu_proyecto.firebaseapp.com
+   VITE_FIREBASE_PROJECT_ID=tu_proyecto
+   VITE_FIREBASE_STORAGE_BUCKET=tu_proyecto.firebasestorage.app
+   VITE_FIREBASE_MESSAGING_SENDER_ID=tu_id
+   VITE_FIREBASE_APP_ID=tu_app_id
+   VITE_CLOUDINARY_CLOUD_NAME=tu_cloud_name
+   VITE_ADMIN_PASSWORD=tu_contraseña_segura
+   ```
+
+4. **Desarrollo local**
+   ```bash
+   npm run dev
+   ```
+
+5. **Build para producción**
+   ```bash
+   npm run build
+   ```
+
+## 📁 Estructura del Proyecto
+
+```
+Catalogo-de-profesionales/
+├── .env                    (No en GitHub - credenciales)
+├── .env.example            (En GitHub - plantilla)
+├── .gitignore              (Protege .env y node_modules)
+├── package.json            (Dependencias)
+├── vite.config.js          (Configuración Vite)
+├── index.html              (Catálogo público)
+├── admin.html              (Panel administrador)
+├── js/
+│   ├── storage.js          (Firestore + Cloudinary)
+│   ├── auth.js             (Autenticación
+│   ├── app_new.js          (Lógica catálogo público)
+│   ├── admin_new.js        (Lógica panel admin)
+│   └── cloudinary.js       (Upload a Cloudinary)
+├── css/
+│   ├── styles.css          (Estilos públicos)
+│   └── admin.css           (Estilos admin)
+└── assets/
+    └── logo_portfolio.png
+```
 
 ## 💡 Funcionalidades Detalladas
 
 ### Vista Pública (index.html)
 
-#### Búsqueda
-- Busca por nombre de profesional en tiempo real
-- Se combina con filtros de categoría
-
-#### Filtros
-- Botones para cada área/categoría
-- "Ver todos" para resetear filtros
+#### Búsqueda & Filtros
+- Selecciona un área → Ve profesionales activos
+- Búsqueda por nombre en tiempo real
 - Filtros y búsqueda trabajan juntos
+- Volver a servicios con botón
 
-#### Cards de Profesional
-- Foto (con fallback a avatar marrón)
-- Nombre y categoría
+#### Tarjetas de Profesional
+- Foto cargada en Cloudinary
+- Si no hay foto: iniciales del nombre y apellido
+- Nombre y área
 - Descripción profesional
-- Teléfono y email
-- Botón WhatsApp directo
-- Hover con animación
+- Teléfono
+- Botón WhatsApp con enlace directo
+- Animación hover
 
-### Panel Admin (admin.html)
+### Panel Admin
 
-#### Login
-- Pantalla simple y segura
-- Validación de contraseña
-- Error visual si es incorrecta
+#### Autenticación
+- Contraseña desde variable de entorno
+- Sesión persistente en localStorage
+- Cierre de sesión (logout)
 
 #### Gestión de Áreas
-- Lista de áreas existentes
-- Botones Editar y Eliminar
-- Formulario para crear/editar
+- Crear, editar, eliminar áreas
 - Icono emoji para cada área
 - Advertencia al eliminar (elimina profesionales asociados)
 
 #### Gestión de Profesionales
-- Tabla filtrable por área
-- CRUD completo
-- Campos: Nombre*, Email, Teléfono, Descripción, Área*, Foto URL
-- Validaciones: Email válido, campos requeridos
-- Feedback visual en cada acción
+- **CRUD Completo**: Crear, leer, editar, eliminar
+- **Tabla filtrable** por área
+- **Carga de imágenes**: Directamente a Cloudinary
+- **Vista previa**: Antes de guardar
+- **Validaciones**:
+  - Nombre requerido
+  - Área requerida
+  - Imagen: solo JPG/PNG/WebP, máx 5MB
+- **Estado**: Marcar como activo/inactivo
+- **Notificaciones**: Toast con feedback visual
 
-#### Notificaciones
-- Toast de éxito (verde)
-- Toast de error (rojo)
-- Toast de advertencia (naranja)
-- Auto-cierre después de 3 segundos
+## 🔄 Flujo de Datos
+
+```
+Admin Panel
+    ↓ (sube imagen)
+Cloudinary (hosting + optimización)
+    ↓ (retorna URL)
+Firestore (guarda URL + datos)
+    ↓
+Catálogo Público
+    ↓ (muestra profesionales activos)
+Usuario (busca, filtra, contacta)
+```
+
+## 💾 Persistencia de Datos
+
+### Firestore
+- Base de datos NoSQL en la nube
+- **Colecciones**:
+  - `areas` - Áreas/especialidades
+  - `profesionales` - Profesionales con datos completos
+
+### Cloudinary
+- Almacena imágenes optimizadas
+- URLs públicas en Firestore
+- Eliminación automática al borrar profesional
+
+### localStorage
+- Solo para sesión admin (activo/inactivo)
+
+## 🔒 Seguridad
+
+### Variables de Entorno
+- Credenciales Firebase **no expuestas** en GitHub
+- Contraseña admin en variable de entorno
+- `.env` en `.gitignore`
+
+### Firebase Rules
+```javascript
+match /databases/{database}/documents {
+  match /{document=**} {
+    allow read, write: if request.auth != null;
+  }
+}
+```
+
+### Cloudinary
+- Upload unsigned (sin autenticación backend)
+- Upload preset configurado
+
+⚠️ **Para producción con usuarios reales**:
+- Implementar autenticación Firebase
+- Restringir permisos de Firestore
+- HTTPS obligatorio
+- Rate limiting en API
+
+
+## 🛠️ Desarrollo
+
+### Scripts
+```bash
+npm run dev      # Servidor local
+npm run build    # Build producción
+npm run preview  # Previsualizar build
+```
+
+### Agregar Nueva Área
+1. Panel Admin → Gestión de Áreas
+2. Ingresa nombre (ej: "Carpinteros") e icono (ej: "🪵")
+3. Click "Agregar Área"
+
+### Agregar Profesional
+1. Panel Admin → Gestión de Profesionales
+2. Click "Agregar Profesional"
+3. Completa datos
+4. Sube foto (o deja vacío para usar iniciales)
+5. Marca como activo
+6. Click "Guardar"
 
 ## 📱 Responsivo
 
@@ -117,107 +247,30 @@ Optimizado para:
 - **Desktop** (1024px+) - Layout completo
 - **Tablet** (768px) - Layout ajustado
 - **Móvil** (480px) - Optimizado para touch
-  - Inputs con font-size 16px (evita zoom)
-  - Sidebar convertido a navbar horizontal
-  - Tabla de profesionales compacta
-  - Cards apiladas verticalmente
 
-## 💾 Persistencia de Datos
 
-- **localStorage** del navegador
-- Datos se guardan automáticamente
-- Persisten entre recargas
-- No se comparten entre navegadores
-- Se pierden si se limpia el caché
+## 📝 Cambios Principales
 
-### Estructura de Datos
+**v1.0 (Actual)**
+- ✅ Firebase Firestore (reemplaza localStorage)
+- ✅ Cloudinary para imágenes
+- ✅ Vite como bundler
+- ✅ Variables de entorno
+- ✅ Estado activo/inactivo
+- ✅ Iniciales como avatar fallback
+- ✅ CORS configurado
 
-```javascript
-// localStorage["areas"]
-[
-  { id: "uuid", nombre: "Electricistas", icono: "⚡" }
-]
+## 🤝 Contribuir
 
-// localStorage["profesionales"]
-[
-  {
-    id: "uuid",
-    nombre: "Juan Pérez",
-    telefono: "+54 9 11 1234-5678",
-    email: "juan@ejemplo.com",
-    descripcion: "Especialista...",
-    areaId: "uuid",
-    foto_url: "https://..."
-  }
-]
+Las pull requests son bienvenidas. Para cambios mayores, abre una issue primero.
 
-// localStorage["admin_session"]
-true | false
-```
+## 📄 Licencia
 
-## 🔧 Desarrollo
-
-### Estructura de Módulos
-
-- **storage.js**: Abstracción de localStorage (CRUD)
-- **auth.js**: Lógica de autenticación
-- **app.js**: Lógica de vista pública
-- **admin.js**: Lógica del panel admin
-
-### Sin Dependencias
-- No usa React, Vue, Angular
-- No usa Bootstrap, TailwindCSS
-- No usa jQuery o librerías externas
-- Solo Google Fonts (tipografía)
-
-### Variables CSS para Temas
-Fácil de customizar - solo edita `:root` en el CSS
-
-## 📸 Datos Precargados
-
-### Áreas
-1. **Electricistas** ⚡
-2. **Plomeros** 💧
-3. **Gasistas** 🔥
-
-### Profesionales (6 ejemplos)
-- 2 Electricistas
-- 2 Plomeros
-- 2 Gasistas
-
-Con fotos de ejemplo, emails, teléfonos y descripciones realistas.
-
-## 🎯 Mejoras Implementadas
-
-✅ Paleta de colores marrón profesional
-✅ Notificaciones Toast en lugar de alert()
-✅ Validación de email
-✅ Avatar con gradiente marrón
-✅ Email clickeable (mailto)
-✅ WhatsApp con emoji
-✅ Footer informativo
-✅ Responsive mejorado
-✅ Placeholder descriptivos
-✅ Feedback visual en todas acciones
-✅ UX intuitiva y clara
-
-## 🛡️ Seguridad
-
-⚠️ **Notas Importantes**
-- La contraseña está en el código fuente (aceptable para proyectos personales)
-- No usa HTTPS o encriptación (adicionar si es necesario)
-- Los datos están en localStorage (accesibles al navegador)
-
-Para producción con usuarios reales, considera:
-- Backend con autenticación segura
-- Base de datos
-- HTTPS obligatorio
-- API con autenticación tokens
-
-## 📝 Licencia
-
-Proyecto de código abierto. Libre de usar, modificar y distribuir.
+MIT - Libre de usar, modificar y distribuir.
 
 ---
 
-**Versión**: 1.0 | **Última actualización**: 2024
+**Versión**: 1.0  
+**Última actualización**: Junio 2026  
+**Desarrollador**: Alexis Vespa  
+**Repositorio**: [GitHub](https://github.com/Alexis1005/Catalogo-de-profesionales)
